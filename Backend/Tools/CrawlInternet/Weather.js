@@ -57,7 +57,7 @@ const weatherToolDescription = {
             },
         },
         required: ["city"],
-    },
+    }
 }
 
 module.exports = {
