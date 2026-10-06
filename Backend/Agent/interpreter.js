@@ -1,6 +1,6 @@
 const path = require("path");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const CriticSchema = require("../Schema/CriticSchema");
+const interpretationSchema = require("../Schema/InterpreterSchema");
 
 require("dotenv").config();
 
