@@ -29,7 +29,7 @@ async function searchWikipedia(query, limit = 5) {
         }
 
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
 
         return {
             success: true,

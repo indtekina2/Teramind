@@ -125,7 +125,7 @@ ${solution}
              */
             if (!functionCalls || functionCalls.length === 0) {
                 const text = response.text();
-
+                console.log(text)
                 return {
                     success: true,
                     data: JSON.parse(text),

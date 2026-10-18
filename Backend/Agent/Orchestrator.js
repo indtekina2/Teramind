@@ -87,6 +87,7 @@ async function runOrchestrator(initialQuery, maxSteps = 8, modelName = "gemini-3
   let accumulatedContext = [];
   let currentStep = 0;
 
+  console.log("Accumulated Context:", accumulatedContext);
   console.log(`\n🚀 [Orchestrator] Starting workflow for query: "${initialQuery}"\n`);
 
   while (currentStep < maxSteps) {

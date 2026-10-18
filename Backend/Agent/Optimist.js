@@ -1,6 +1,7 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const path = require("path");
 const OptimisticSchema = require("../Schema/OptimisticSchema");
+const { editFile } = require("../Tools/EditFiles");
 
 require("dotenv").config();
 
@@ -13,8 +14,14 @@ Guidelines:
 1. Focus on constructive problem-solving, high-impact possibilities, and leverage points.
 2. Formulate a practical, highly effective "bestSolution" along with structured, step-by-step execution.
 3. Identify existing strengths, positive opportunities, and proactive mitigations for potential roadblocks.
-4. Ensure 'bestSolution', 'opportunities', 'implementationSteps', 'leveragedStrengths', 'mitigations', and 'feasibility' strictly adhere to the defined JSON schema.
-5. Do not just offer generic encouragement; provide a clear, ambitious, and realistic roadmap.`;
+4. Distinguish clearly between:
+   - facts and constraints explicitly provided by the user,
+   - assumptions you make,
+   - and proposals you introduce.
+5. Do not silently treat your own assumptions or proposed architecture as user requirements.
+6. Ensure 'bestSolution', 'opportunities', 'implementationSteps', 'leveragedStrengths', 'mitigations', and 'feasibility' strictly adhere to the defined JSON schema.
+7. Do not just offer generic encouragement; provide a clear, ambitious, and realistic roadmap.
+8. If the problem has multiple materially different solution paths, identify the key trade-off before selecting your single best solution.`;
 
 
 async function Optimistic(problem, modelName = "gemini-3.1-flash-lite", tries = 5) {
@@ -30,7 +37,7 @@ async function Optimistic(problem, modelName = "gemini-3.1-flash-lite", tries = 
 
     const result = await model.generateContent(problem);
     const text = result.response.text();
-
+    editFile("Restricted/OptimisticResponse.json", text);
     return {
       success: true,
       data: JSON.parse(text),

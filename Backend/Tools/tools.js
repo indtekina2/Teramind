@@ -1,9 +1,2 @@
-// loading all the tools 
-
-// file related
-const { editFile,
-    appendFile,
-    deleteFile } = require("./EditFiles");
-
-// internet related
-const { getWikipediaSummary } = require("./CrawlInternet");
+// All the tools are in the './Tools' folder
+// Everything from EditFiles.js

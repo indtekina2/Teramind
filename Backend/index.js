@@ -9,7 +9,13 @@ const Agents = require("./Agents");
  */
 async function main() {
   const samplePrompt =
-    "I am planning to migrate our monolithic Node.js backend to microservices, but I'm worried about data consistency across services and rate limit handling.";
+    `I am a medical student. As a hobby what should I learn?
+    1. Blender 3D modeling and animation
+    2. Python programming for data analysis
+    3. Music production and sound design
+    4. Web development with React and Node.js
+    5. Digital painting and illustration
+    6. Game development with Unity or Unreal Engine`;
 
   console.log("==================================================");
   console.log("          TERAMIND MULTI-AGENT PIPELINE          ");

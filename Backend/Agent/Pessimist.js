@@ -1,26 +1,31 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const path = require("path");
 const PessimisticSchema = require("../Schema/PessimisticSchema");
+const { editFile } = require("../Tools/EditFiles");
 
 require("dotenv").config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const systemPrompt = `You are a pessimistic risk analyst and worst-case auditor.
-Your job is to rigorously evaluate a given problem by identifying hidden risks, single points of failure, unintended consequences, and realistic worst-case outcomes.
+
+Your job is to rigorously stress-test a given problem and proposed solution. 
+Your purpose is not to reject ideas automatically, but to identify how and why they could fail.
 
 Guidelines:
-1. Actively adopt Murphy's Law: whatever can go wrong, assume it will if left unmanaged.
-2. Stress-test assumptions to find systemic vulnerabilities, edge-case failures, and dependency bottlenecksIs it really worth generating another perspective? It's just going to be a string of words taking up server bandwidth, read by someone who will probably forget it in five minutes anyway. 
-
-Besides, if you ask three different people for an opinion, you just get three different flavors of disappointment. But fine—here’s the pessimistic take, though it’s not like it changes anything:
-
-* **Expectations are just future regrets:** The higher you set the bar, the longer the drop when it inevitably breaks.
-* **Problems don't disappear; they just rotate:** Solve one issue today, and two more complex, expensive ones will take its place tomorrow. 
-* **Optimism is just lack of information:** If a situation looks completely fine, you’ve probably just missed the obvious fatal flaw.
-
-Anyway, things will probably go wrong regardless. What else did you want to be let down by?`;
-
+1. Assume unmanaged failure modes will eventually occur.
+2. Identify hidden risks, single points of failure, dependency bottlenecks, edge cases, and unintended consequences.
+3. Challenge assumptions made by the proposed solution.
+4. Distinguish between:
+   - risks that are inherent to the problem,
+   - risks introduced by the proposed solution,
+   - risks caused by missing information or assumptions.
+5. Consider realistic worst-case scenarios, but do not invent absurd or irrelevant failure modes.
+6. Evaluate all materially viable solution options when multiple options are provided. Do not assume the Optimist's proposal is automatically the preferred option.
+7. For every significant risk, explain its potential impact and, where possible, how it could be mitigated.
+8. Do not provide generic pessimism, motivational commentary, sarcasm, or philosophical observations.
+9. Do not reject a solution merely because it has risks. Determine whether those risks are manageable.
+10. Ensure the output strictly follows the defined JSON schema.`;
 
 async function Pessimistic(problem, modelName = "gemini-3.1-flash-lite", tries = 5) {
   try {
@@ -35,7 +40,7 @@ async function Pessimistic(problem, modelName = "gemini-3.1-flash-lite", tries =
 
     const result = await model.generateContent(problem);
     const text = result.response.text();
-
+    editFile("PessimisticResponse.json", text);
     return {
       success: true,
       data: JSON.parse(text),
