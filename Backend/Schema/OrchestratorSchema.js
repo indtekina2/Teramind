@@ -7,12 +7,14 @@ const OrchestratorSchema = {
       type: SchemaType.STRING,
       enum: [
         "Interpreter",
+        "PastProblems",
         "Critic",
         "Optimist",
         "Pessimist",
+        "Summary",
         "FINISH"
       ],
-      description: "The name of the next specialist agent to invoke, or FINISH when processing is complete.",
+      description: "The name of the next specialist agent to invoke, including Summary for the final synthesis, or FINISH when processing is complete.",
     },
     context: {
       type: SchemaType.ARRAY,

@@ -73,7 +73,7 @@ const interpretationSchema = {
     }
   },
 
-  required: ["summary", "Main_Problem", "goals"],
+  required: ["summary", "Main_Problem", "goals", "additional_needed_info"],
 };
 
 module.exports = interpretationSchema;

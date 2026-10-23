@@ -69,6 +69,16 @@ const OptimisticSchema = {
       description:
         "Assessment of how practical and attainable this solution is with proper execution.",
     },
+    confidence: {
+      type: SchemaType.STRING,
+      enum: ["high", "medium", "low"],
+      description: "Confidence in this solution given the available information.",
+    },
+    additional_needed_info: {
+      type: SchemaType.ARRAY,
+      items: { type: SchemaType.STRING },
+      description: "Specific questions for the user when missing facts make confidence low; otherwise an empty array.",
+    },
   },
 
   required: [
@@ -78,6 +88,8 @@ const OptimisticSchema = {
     "leveragedStrengths",
     "mitigations",
     "feasibility",
+    "confidence",
+    "additional_needed_info",
   ],
 };
 

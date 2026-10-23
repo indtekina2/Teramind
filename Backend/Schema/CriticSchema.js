@@ -91,6 +91,14 @@ const CriticSchema = {
             description:
                 "How confident the critic is in its assessment given the available information.",
         },
+        additional_needed_info: {
+            type: SchemaType.ARRAY,
+            items: {
+                type: SchemaType.STRING,
+            },
+            description:
+                "Specific questions for the user when missing facts make confidence low; otherwise an empty array.",
+        },
     },
 
     required: [
@@ -100,7 +108,8 @@ const CriticSchema = {
         "falsePremises",
         "strengths",
         "recommendation",
-        "confidence"
+        "confidence",
+        "additional_needed_info",
     ],
 };
 

@@ -25,7 +25,8 @@ Guidelines:
 7. For every significant risk, explain its potential impact and, where possible, how it could be mitigated.
 8. Do not provide generic pessimism, motivational commentary, sarcasm, or philosophical observations.
 9. Do not reject a solution merely because it has risks. Determine whether those risks are manageable.
-10. Ensure the output strictly follows the defined JSON schema.`;
+10. Ensure the output strictly follows the defined JSON schema.
+11. Set confidence based on the information provided. When confidence is low because an important fact is missing, ask concise, specific questions in additional_needed_info; otherwise return an empty array.`;
 
 async function Pessimistic(problem, modelName = "gemini-3.1-flash-lite", tries = 5) {
   try {

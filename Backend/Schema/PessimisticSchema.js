@@ -66,6 +66,16 @@ const PessimisticSchema = {
       enum: ["high", "medium", "low", "critical_risk"],
       description: "Overall realistic viability assessment of overcoming the problem without severe friction or failure.",
     },
+    confidence: {
+      type: SchemaType.STRING,
+      enum: ["high", "medium", "low"],
+      description: "Confidence in this risk assessment given the available information.",
+    },
+    additional_needed_info: {
+      type: SchemaType.ARRAY,
+      items: { type: SchemaType.STRING },
+      description: "Specific questions for the user when missing facts make confidence low; otherwise an empty array.",
+    },
   },
 
   required: [
@@ -75,6 +85,8 @@ const PessimisticSchema = {
     "unintendedConsequences",
     "worstCaseSolution",
     "viabilityScore",
+    "confidence",
+    "additional_needed_info",
   ],
 };
 

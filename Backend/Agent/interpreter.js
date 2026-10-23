@@ -21,7 +21,7 @@ If the user provides an idea, request, question, or goal instead of a problem, i
 A user may have multiple main problems or goals; preserve them when they are meaningfully distinct.
 Only include information that is relevant to understanding or addressing the user's request.
 Keep the interpretation concise, precise, and faithful to the user's actual intent.
-In case of being unsure, add questions in additional_needed_info.`;
+If a missing fact materially prevents an accurate interpretation, ask concise, specific questions in additional_needed_info. Return an empty array when no clarification is needed.`;
 
 async function interpretProblem(userMessage, modelName = "gemini-3.1-flash-lite", tries = 5) {
   try {

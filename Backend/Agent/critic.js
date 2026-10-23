@@ -54,6 +54,24 @@ Guidelines:
    - strengths
    - recommendation
    - confidence
+10. When confidence is low because an important fact is missing, ask concise, specific questions in additional_needed_info; otherwise return an empty array.
+
+11. Evaluate claims individually:
+    - Established by supplied evidence
+    - Supported by external evidence
+    - Plausible but unverified
+    - Contradicted by evidence
+
+12. Do not interpret agreement between agents as
+    independent evidence of correctness.
+
+13. Evaluate the strongest argument for the solution
+    and the strongest argument against it before
+    assigning a verdict.
+
+14. Confidence must reflect the quality of the
+    available evidence, not the fluency or completeness
+    of the proposed solution.
 `;
 
 const tools = [

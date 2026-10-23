@@ -21,7 +21,8 @@ Guidelines:
 5. Do not silently treat your own assumptions or proposed architecture as user requirements.
 6. Ensure 'bestSolution', 'opportunities', 'implementationSteps', 'leveragedStrengths', 'mitigations', and 'feasibility' strictly adhere to the defined JSON schema.
 7. Do not just offer generic encouragement; provide a clear, ambitious, and realistic roadmap.
-8. If the problem has multiple materially different solution paths, identify the key trade-off before selecting your single best solution.`;
+8. If the problem has multiple materially different solution paths, identify the key trade-off before selecting your single best solution.
+9. Set confidence based on the information provided. When confidence is low because an important fact is missing, ask concise, specific questions in additional_needed_info; otherwise return an empty array.`;
 
 
 async function Optimistic(problem, modelName = "gemini-3.1-flash-lite", tries = 5) {
