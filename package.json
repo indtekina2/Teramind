@@ -1,0 +1,17 @@
+{
+  "name": "teramind",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "Backend",
+    "Frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c cyan,green \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "build": "npm run build --workspace frontend",
+    "start": "npm run start --workspace backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
